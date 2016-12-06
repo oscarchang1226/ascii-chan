@@ -3,8 +3,69 @@
     <head>
         <meta charset="utf-8">
         <title>ASCII Chan</title>
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+                margin: 0;
+            }
+
+            body {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            h1 {
+                margin: auto;
+            }
+
+            form {
+                display: flex;
+                width: 90%;
+                margin: 0 auto 24px auto;
+                flex-direction: column;
+            }
+
+            .art-space {
+                padding: 16px 0;
+                display: flex;
+                width: 90%;
+                margin: 0 auto 24px auto;
+                flex-direction: column;
+                border-top: 4px solid #aaa;
+            }
+
+            .art-title, .art-work {
+                margin: auto;
+            }
+        </style>
     </head>
     <body>
-        Hello, {{name}}!
+        <h1>Ascii Art</h1>
+        <form method="post">
+            <label>
+                <span>Title</span>
+                <input type="text" name="title" value="{{title}}"/>
+            </label>
+
+            <label>
+                <span>Art</span>
+                <textarea name="art">{{art}}</textarea>
+            </label>
+
+            <span class="error">{{error}}</span>
+
+            <input type="submit"/>
+
+        </form>
+
+        {% if arts %}
+            {% for art in arts %}
+                <div class="art-space">
+                    <h4 class="art-title">{{art.title}}</h4>
+                    <pre class="art-work">{{art.art}}</pre>
+                </div>
+            {% endfor %}
+        {% endif %}
     </body>
 </html>
